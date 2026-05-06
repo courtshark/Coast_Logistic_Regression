@@ -38,6 +38,9 @@ This file is the running project memory for the logistic regression study. It tr
 - [notebooks/degree_attainment_google_colab.ipynb](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/notebooks/degree_attainment_google_colab.ipynb): Colab-ready notebook template for collaborators
 - [scripts/score_at_risk_students.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/score_at_risk_students.py): student-level risk scoring script for outreach lists
 - [scripts/train_validated_outreach_model.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/train_validated_outreach_model.py): validated train/test outreach model for risk ranking
+- [scripts/run_multi_college_pipeline.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/run_multi_college_pipeline.py): configurable pipeline runner for sister colleges
+- [templates/column_mapping.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/column_mapping.example.json): example raw-to-standard column mapping
+- [templates/college_config.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/college_config.example.json): example college-specific cohort and modeling configuration
 
 ## Working Objective
 
@@ -70,6 +73,7 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - A Colab-friendly notebook and a one-command full pipeline runner now exist for collaborators.
 - A student-level at-risk scoring step now exists for support/outreach use.
 - A validated train/test outreach model now exists and is the preferred operational scoring path.
+- A reusable multi-college template now exists so sister colleges can retrain the same methodology on their own data.
 
 ## Open Questions
 
@@ -89,7 +93,7 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 ## Immediate Next Steps
 
 1. Decide whether the top-10% / next-20% outreach tier rule matches advisor capacity.
-2. Review whether the current grouped categories match your institutional reporting language.
+2. Review whether the current grouped categories and cohort rules should become district-wide template defaults.
 3. Determine whether more fall cohorts will be added before final modeling.
 4. Decide whether to add interaction terms such as attendance status by education goal.
 5. If needed, add calibration plots and threshold-analysis outputs for the validated outreach model.
@@ -127,6 +131,8 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - Added and ran a student-level at-risk scoring script.
 - Added and ran a validated train/test outreach model with a safer default feature set.
 - Updated the full pipeline runner to produce validated outreach scoring outputs.
+- Added a configurable multi-college runner plus example mapping and college config files.
+- Verified the multi-college runner against the current cohort file and example configs.
 
 ## Update Rule
 

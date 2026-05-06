@@ -51,6 +51,21 @@ The notebook is the easiest option for collaborators. It lets them:
 
 The runner script is useful when someone wants a single command in Colab or another notebook environment after the file is uploaded.
 
+## Multi-College Template
+
+If sister colleges want to use the same methodology with their own data, use:
+
+- [scripts/run_multi_college_pipeline.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/run_multi_college_pipeline.py)
+- [templates/column_mapping.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/column_mapping.example.json)
+- [templates/college_config.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/college_config.example.json)
+
+Recommended setup for another college:
+
+1. copy the example mapping file and map their raw columns to the standard cleaned names
+2. copy the example college config and update included goals, groupings, and outreach features
+3. run the pipeline on that college's own dataset
+4. retrain and validate locally rather than reusing our coefficients
+
 Profile the raw workbook:
 
 ```bash
@@ -103,6 +118,12 @@ Run the full pipeline end to end:
 
 ```bash
 ./.venv/bin/python scripts/run_full_pipeline.py --input data/raw/cohort.xlsx --output-dir pipeline_run
+```
+
+Run the reusable multi-college pipeline:
+
+```bash
+./.venv/bin/python scripts/run_multi_college_pipeline.py --input data/raw/cohort.xlsx --mapping-config templates/column_mapping.example.json --college-config templates/college_config.example.json --output-dir multi_college_run --college-name "Example College"
 ```
 
 The full pipeline now also writes:

@@ -1,0 +1,59 @@
+{
+  "outcome_column": "degree_obtained",
+  "included_attendance_statuses": ["FT", "PT"],
+  "included_education_goals": [
+    "AA Degree w/Transfer Bach.",
+    "AA Degree w/out Transfer",
+    "Bachelor's Degree or higher",
+    "Certificate Only",
+    "Two Yr. Vocational Degree",
+    "4 yr college student meet 4 yr"
+  ],
+  "groupings": {
+    "residency": {
+      "California Resident": "California Resident",
+      "Foreign": "Nonresident/Foreign",
+      "Non-Resident-Out of state": "Nonresident/Foreign",
+      "__default__": "AB540/Exempt/Other"
+    },
+    "ipeds_ethnicity": {
+      "Hispanic": "Hispanic",
+      "White": "White",
+      "Asian": "Asian",
+      "Black": "Black",
+      "__default__": "Other/Multiple/Unknown"
+    },
+    "gender": {
+      "F": "F",
+      "M": "M",
+      "__default__": "Other/Unknown"
+    },
+    "education_goal": {
+      "AA Degree w/Transfer Bach.": "Transfer-Oriented",
+      "Bachelor's Degree or higher": "Transfer-Oriented",
+      "4 yr college student meet 4 yr": "Transfer-Oriented",
+      "AA Degree w/out Transfer": "Associate Degree",
+      "Certificate Only": "Certificate/Vocational",
+      "Two Yr. Vocational Degree": "Certificate/Vocational",
+      "__default__": "Other"
+    }
+  },
+  "binary_columns_zero_one": ["athlete", "veteran", "degree_obtained"],
+  "binary_columns_yes_no": ["disability", "foster_youth", "international_student"],
+  "outreach_feature_columns": [
+    "age",
+    "attendance_status",
+    "athlete",
+    "district_status",
+    "high_school_feeder",
+    "bog_eligible",
+    "education_goal_grouped"
+  ],
+  "sensitive_outreach_feature_columns": [
+    "gender_grouped",
+    "ethnicity_grouped",
+    "residency_grouped",
+    "disability",
+    "international_student"
+  ]
+}
