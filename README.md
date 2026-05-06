@@ -62,6 +62,13 @@ If sister colleges want to use the same methodology with their own data, use:
 - [templates/multi_cohort_data_request_template.md](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/multi_cohort_data_request_template.md)
 - [templates/multi_cohort_completion_dataset_template.csv](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/multi_cohort_completion_dataset_template.csv)
 
+The multi-cohort materials now explicitly support:
+
+- separate raw award/history tables
+- student-level rolled-up modeling datasets
+- multiple awards per student
+- first-success term fields for English and math, plus derived early-success flags
+
 Recommended setup for another college:
 
 1. copy the example mapping file and map their raw columns to the standard cleaned names

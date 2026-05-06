@@ -79,6 +79,8 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - A validated train/test outreach model now exists and is the preferred operational scoring path.
 - A reusable multi-college template now exists so sister colleges can retrain the same methodology on their own data.
 - A concrete multi-cohort schema and data-request template now exist for assembling additional cohorts.
+- The multi-cohort schema now distinguishes raw award/history tables from the student-level modeling table.
+- The multi-cohort schema now supports multiple awards per student and derived English/math first-success indicators.
 
 ## Open Questions
 
@@ -139,6 +141,7 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - Added a configurable multi-college runner plus example mapping and college config files.
 - Verified the multi-college runner against the current cohort file and example configs.
 - Added a formal multi-cohort dataset schema and data-request template.
+- Expanded the schema/template to support award-level source data, student-level rollups, and English/math first-success fields.
 
 ## Update Rule
 
