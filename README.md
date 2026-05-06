@@ -87,6 +87,12 @@ Score students for outreach risk tiers:
 ./.venv/bin/python scripts/score_at_risk_students.py --input data/processed/interpretive_primary_analysis_cohort.csv --output outputs/scored_primary_analysis_cohort.csv --summary outputs/at_risk_scoring_summary.md
 ```
 
+Train a validated outreach model with a train/test split:
+
+```bash
+./.venv/bin/python scripts/train_validated_outreach_model.py --input data/processed/interpretive_primary_analysis_cohort.csv --output outputs/validated_scored_primary_analysis_cohort.csv --report outputs/validated_outreach_risk_model.md
+```
+
 Export Markdown summaries to HTML:
 
 ```bash
@@ -102,10 +108,20 @@ Run the full pipeline end to end:
 The full pipeline now also writes:
 
 - `data/scored_primary_analysis_cohort.csv`
+- `data/validated_scored_primary_analysis_cohort.csv`
 - student-level predicted degree probability
 - risk of non-completion
 - risk percentile
 - risk tier (`High`, `Medium`, `Low`)
+
+## Recommended Use
+
+Use the project in two modes:
+
+- `Interpretive model`: the `statsmodels` workflow for odds ratios, confidence intervals, and reporting
+- `Operational outreach model`: the validated train/test workflow for ranking students by risk and prioritizing extra support
+
+The validated outreach model currently uses a safer default feature set that excludes grouped gender, ethnicity, residency, disability, and international-student status.
 
 ## Project Layout
 

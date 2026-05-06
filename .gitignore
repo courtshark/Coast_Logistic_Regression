@@ -8,6 +8,8 @@ data/processed/
 outputs/scored_primary_analysis_cohort.csv
 outputs/at_risk_scoring_summary.md
 outputs/raw_data_profile.md
+outputs/validated_scored_primary_analysis_cohort.csv
+outputs/validated_outreach_risk_model.md
 
 # Local test runs
 colab_pipeline_test/

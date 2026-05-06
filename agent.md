@@ -37,6 +37,7 @@ This file is the running project memory for the logistic regression study. It tr
 - [scripts/run_full_pipeline.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/run_full_pipeline.py): single-command pipeline runner for local use or notebook environments like Colab
 - [notebooks/degree_attainment_google_colab.ipynb](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/notebooks/degree_attainment_google_colab.ipynb): Colab-ready notebook template for collaborators
 - [scripts/score_at_risk_students.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/score_at_risk_students.py): student-level risk scoring script for outreach lists
+- [scripts/train_validated_outreach_model.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/train_validated_outreach_model.py): validated train/test outreach model for risk ranking
 
 ## Working Objective
 
@@ -68,6 +69,7 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - HTML exports now exist for the main summary reports.
 - A Colab-friendly notebook and a one-command full pipeline runner now exist for collaborators.
 - A student-level at-risk scoring step now exists for support/outreach use.
+- A validated train/test outreach model now exists and is the preferred operational scoring path.
 
 ## Open Questions
 
@@ -86,11 +88,11 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 
 ## Immediate Next Steps
 
-1. Refine the outreach targeting rule, such as top-risk percentile or advisor-capacity-based cutoffs.
+1. Decide whether the top-10% / next-20% outreach tier rule matches advisor capacity.
 2. Review whether the current grouped categories match your institutional reporting language.
 3. Determine whether more fall cohorts will be added before final modeling.
 4. Decide whether to add interaction terms such as attendance status by education goal.
-5. If needed, add calibration, confusion matrix, and threshold analysis outputs.
+5. If needed, add calibration plots and threshold-analysis outputs for the validated outreach model.
 
 ## Update Log
 
@@ -123,6 +125,8 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - Added a Colab-ready notebook and a reusable end-to-end pipeline runner.
 - Verified the full pipeline runner against the current cohort file.
 - Added and ran a student-level at-risk scoring script.
+- Added and ran a validated train/test outreach model with a safer default feature set.
+- Updated the full pipeline runner to produce validated outreach scoring outputs.
 
 ## Update Rule
 

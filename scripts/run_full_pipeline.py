@@ -10,7 +10,13 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
 RENAME_MAP = {
@@ -75,6 +81,16 @@ degree_obtained ~ age
     + C(bog_eligible, Treatment(reference='No'))
     + C(education_goal_grouped, Treatment(reference='Transfer-Oriented'))
 """
+
+DEFAULT_OUTREACH_FEATURES = [
+    "age",
+    "attendance_status",
+    "athlete",
+    "district_status",
+    "high_school_feeder",
+    "bog_eligible",
+    "education_goal_grouped",
+]
 
 
 def standardize_strings(df: pd.DataFrame) -> pd.DataFrame:
@@ -209,6 +225,86 @@ def score_students(df: pd.DataFrame) -> pd.DataFrame:
     return scored
 
 
+def assign_percentile_tier(risk_rank_percentile: float) -> str:
+    if risk_rank_percentile <= 0.10:
+        return "High"
+    if risk_rank_percentile <= 0.30:
+        return "Medium"
+    return "Low"
+
+
+def build_outreach_pipeline(feature_df: pd.DataFrame) -> Pipeline:
+    numeric_columns = feature_df.select_dtypes(include=["number"]).columns.tolist()
+    categorical_columns = [c for c in feature_df.columns if c not in numeric_columns]
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            (
+                "numeric",
+                Pipeline(
+                    steps=[
+                        ("imputer", SimpleImputer(strategy="median")),
+                        ("scaler", StandardScaler()),
+                    ]
+                ),
+                numeric_columns,
+            ),
+            (
+                "categorical",
+                Pipeline(
+                    steps=[
+                        ("imputer", SimpleImputer(strategy="most_frequent")),
+                        ("onehot", OneHotEncoder(handle_unknown="ignore")),
+                    ]
+                ),
+                categorical_columns,
+            ),
+        ]
+    )
+
+    return Pipeline(
+        steps=[
+            ("preprocessor", preprocessor),
+            ("classifier", LogisticRegression(max_iter=2000, solver="liblinear")),
+        ]
+    )
+
+
+def score_validated_students(df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, float]]:
+    features = [feature for feature in DEFAULT_OUTREACH_FEATURES if feature in df.columns]
+    X = df[features].copy()
+    y = df["degree_obtained"].astype(int)
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X,
+        y,
+        test_size=0.2,
+        random_state=42,
+        stratify=y,
+    )
+
+    model = build_outreach_pipeline(X)
+    model.fit(X_train, y_train)
+
+    test_prob = model.predict_proba(X_test)[:, 1]
+    test_pred = model.predict(X_test)
+
+    scored = df.copy()
+    scored["predicted_degree_probability_validated"] = model.predict_proba(X)[:, 1]
+    scored["risk_of_non_completion_validated"] = 1 - scored["predicted_degree_probability_validated"]
+    scored["risk_rank_percentile"] = scored["risk_of_non_completion_validated"].rank(
+        method="average", ascending=False, pct=True
+    )
+    scored["risk_tier_validated"] = scored["risk_rank_percentile"].map(assign_percentile_tier)
+
+    metrics = {
+        "test_accuracy": accuracy_score(y_test, test_pred),
+        "test_roc_auc": roc_auc_score(y_test, test_prob),
+        "test_rows": len(X_test),
+    }
+    return scored, metrics
+
+
 def write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
@@ -278,6 +374,38 @@ def build_findings_summary(metrics: dict[str, float], coef_df: pd.DataFrame) -> 
     return "\n".join(lines) + "\n"
 
 
+def build_validated_risk_summary(metrics: dict[str, float], scored: pd.DataFrame) -> str:
+    tier_counts = scored["risk_tier_validated"].value_counts().reindex(
+        ["High", "Medium", "Low"], fill_value=0
+    )
+    lines = [
+        "# Validated Outreach Risk Model",
+        "",
+        "- Purpose: identify students for extra outreach and support using a validated model",
+        "- Modeling approach: train/test split with stratification on `degree_obtained`",
+        "- Feature set excludes grouped gender, ethnicity, residency, disability, and international-student status",
+        "",
+        "## Test-Set Metrics",
+        "",
+        f"- Test rows: `{metrics['test_rows']:,}`",
+        f"- Accuracy: `{metrics['test_accuracy']:.3f}`",
+        f"- ROC AUC: `{metrics['test_roc_auc']:.3f}`",
+        "",
+        "## Risk Tier Rule",
+        "",
+        "- `High`: top 10% highest risk of non-completion",
+        "- `Medium`: next 20% highest risk of non-completion",
+        "- `Low`: remaining 70%",
+        "",
+        "## Tier Counts",
+        "",
+    ]
+    for tier, count in tier_counts.items():
+        lines.append(f"- `{tier}`: `{count}`")
+    lines.append("")
+    return "\n".join(lines) + "\n"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run the full degree attainment pipeline.")
     parser.add_argument("--input", required=True, help="Path to raw Excel workbook.")
@@ -298,6 +426,7 @@ def main() -> None:
     interpretive = build_interpretive_dataset(primary)
     coef_df, metrics = fit_statsmodels_model(interpretive)
     scored = score_students(interpretive)
+    validated_scored, outreach_metrics = score_validated_students(interpretive)
 
     data_dir.mkdir(parents=True, exist_ok=True)
     reports_dir.mkdir(parents=True, exist_ok=True)
@@ -306,9 +435,11 @@ def main() -> None:
     primary.to_csv(data_dir / "primary_analysis_cohort.csv", index=False)
     interpretive.to_csv(data_dir / "interpretive_primary_analysis_cohort.csv", index=False)
     scored.to_csv(data_dir / "scored_primary_analysis_cohort.csv", index=False)
+    validated_scored.to_csv(data_dir / "validated_scored_primary_analysis_cohort.csv", index=False)
     coef_df.to_csv(reports_dir / "statsmodels_degree_obtained_coefficients.csv", index=False)
     write_text(reports_dir / "methods_summary.md", build_methods_summary(metrics))
     write_text(reports_dir / "stakeholder_findings_summary.md", build_findings_summary(metrics, coef_df))
+    write_text(reports_dir / "validated_outreach_risk_model.md", build_validated_risk_summary(outreach_metrics, validated_scored))
 
     print("Pipeline complete")
     print(f"Output directory: {output_dir}")
