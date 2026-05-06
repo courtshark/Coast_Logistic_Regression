@@ -58,6 +58,9 @@ If sister colleges want to use the same methodology with their own data, use:
 - [scripts/run_multi_college_pipeline.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/run_multi_college_pipeline.py)
 - [templates/column_mapping.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/column_mapping.example.json)
 - [templates/college_config.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/college_config.example.json)
+- [multi_cohort_dataset_schema.md](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/multi_cohort_dataset_schema.md)
+- [templates/multi_cohort_data_request_template.md](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/multi_cohort_data_request_template.md)
+- [templates/multi_cohort_completion_dataset_template.csv](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/multi_cohort_completion_dataset_template.csv)
 
 Recommended setup for another college:
 

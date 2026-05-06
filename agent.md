@@ -41,6 +41,9 @@ This file is the running project memory for the logistic regression study. It tr
 - [scripts/run_multi_college_pipeline.py](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/scripts/run_multi_college_pipeline.py): configurable pipeline runner for sister colleges
 - [templates/column_mapping.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/column_mapping.example.json): example raw-to-standard column mapping
 - [templates/college_config.example.json](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/college_config.example.json): example college-specific cohort and modeling configuration
+- [multi_cohort_dataset_schema.md](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/multi_cohort_dataset_schema.md): recommended schema for a combined multi-cohort 3-year completion dataset
+- [templates/multi_cohort_data_request_template.md](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/multi_cohort_data_request_template.md): reusable request template for gathering cohort data
+- [templates/multi_cohort_completion_dataset_template.csv](/Users/courtneyyoungberg/Desktop/Logistic%20Regression/templates/multi_cohort_completion_dataset_template.csv): blank CSV template with the recommended combined dataset headers
 
 ## Working Objective
 
@@ -75,6 +78,7 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - A student-level at-risk scoring step now exists for support/outreach use.
 - A validated train/test outreach model now exists and is the preferred operational scoring path.
 - A reusable multi-college template now exists so sister colleges can retrain the same methodology on their own data.
+- A concrete multi-cohort schema and data-request template now exist for assembling additional cohorts.
 
 ## Open Questions
 
@@ -134,6 +138,7 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - Updated the full pipeline runner to produce validated outreach scoring outputs.
 - Added a configurable multi-college runner plus example mapping and college config files.
 - Verified the multi-college runner against the current cohort file and example configs.
+- Added a formal multi-cohort dataset schema and data-request template.
 
 ## Update Rule
 
