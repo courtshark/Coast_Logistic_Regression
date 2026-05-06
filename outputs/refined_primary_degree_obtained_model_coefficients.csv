@@ -1,0 +1,40 @@
+feature,coefficient,odds_ratio
+categorical__ipeds_ethnicity_Asian,0.6195075633611915,1.8580128629219388
+categorical__residency_Military Dependent NR Exempt,0.5286895225492009,1.6967073543323015
+categorical__attendance_status_FT,0.4850712008336048,1.624290655575802
+categorical__residency_VACA Non-Resident Fee Exemptn,0.4798339365966833,1.6158060536597043
+numeric__international_student,0.39405132498570444,1.4829766604774168
+categorical__ipeds_ethnicity_Unknown,0.34042053055789157,1.4055385382047236
+categorical__ipeds_ethnicity_White,0.3403410588397318,1.405426842080553
+categorical__high_school_feeder_Feeder HS,0.31161356835101195,1.3656268696090854
+categorical__education_goal_4 yr college student meet 4 yr,0.293570906344238,1.3412082762143804
+categorical__education_goal_AA Degree w/Transfer Bach.,0.20890817220129404,1.232331831015055
+categorical__ipeds_ethnicity_Multiple,0.18053724494758494,1.1978607349099548
+numeric__disability,0.10911315210980743,1.1152885404533708
+categorical__education_goal_Two Yr. Vocational Degree,0.09061122383867301,1.0948432735415143
+categorical__bog_eligible_Yes,0.07938030305824334,1.0826159659533947
+categorical__residency_Non-Resident-Out of state,0.0747418917150834,1.077605975956279
+categorical__gender_F,0.0703438458040649,1.0728770221007207
+numeric__athlete,0.06570891405422374,1.0679158166333067
+categorical__ipeds_ethnicity_Hispanic,0.06326421572697438,1.0653082732498897
+categorical__gender_N,0.04966452983590727,1.0509184854373486
+categorical__ipeds_ethnicity_Filipino,0.015865375259989756,1.015991898553659
+categorical__education_goal_Certificate Only,0.00745123346354053,1.0074790629820767
+categorical__district_status_In-District,-0.031856521471243876,0.9686455519480427
+numeric__age,-0.06120544363129211,0.9406299734865701
+categorical__district_status_Out-of-District,-0.07554968924999103,0.9272336558443746
+categorical__gender_B,-0.08492052793131165,0.9185852833734657
+categorical__high_school_feeder_Not a Feeder HS,-0.11434671894072342,0.8919486467738545
+categorical__residency_AB 540 Waiver,-0.1353247692370197,0.8734322017106537
+categorical__district_status_Unknown,-0.16574296823962337,0.8472639799566839
+categorical__ipeds_ethnicity_American Indian Native Alaskan,-0.2264186225439439,0.7973842287728405
+categorical__gender_M,-0.30823702666952046,0.7347411441216052
+categorical__residency_California Resident,-0.32052554668515737,0.725767512117696
+categorical__bog_eligible_No,-0.35252948201910167,0.702907846362682
+categorical__education_goal_Bachelor's Degree or higher,-0.3778574296654,0.6853282011720598
+categorical__high_school_feeder_Unknown,-0.47041602837114804,0.6247423036871365
+categorical__education_goal_AA Degree w/out Transfer,-0.49583328514320235,0.6090631724888461
+categorical__ipeds_ethnicity_Black,-0.7562747883343761,0.46941183242328594
+categorical__attendance_status_PT,-0.7582203797944616,0.46849943663339827
+categorical__ipeds_ethnicity_Pacific Islander,-0.8503917567759006,0.4272475220471374
+categorical__residency_Foreign,-0.9005642138996495,0.4063403321883776

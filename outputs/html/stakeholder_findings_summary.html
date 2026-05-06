@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>stakeholder_findings_summary</title>
+  <style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f8fafc;
+  margin: 0;
+  padding: 32px;
+}
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px 48px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+h1, h2, h3 {
+  color: #0f172a;
+}
+code {
+  background: #eef2ff;
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: #e2e8f0;
+}
+blockquote {
+  border-left: 4px solid #93c5fd;
+  margin-left: 0;
+  padding-left: 16px;
+  color: #334155;
+}
+a {
+  color: #2563eb;
+}
+</style>
+</head>
+<body>
+  <main>
+    <h1>Stakeholder Findings Summary</h1>
+<h2>Overview</h2>
+<p>This summary highlights the current findings from the logistic regression study of <code>degree_obtained</code> for the current fall-entry cohort.</p>
+<p>The current primary analysis focuses on:</p>
+<ul>
+<li>credit students only (<code>FT</code> or <code>PT</code>)</li>
+<li>students with degree-, certificate-, or transfer-oriented education goals</li>
+<li>one fall cohort (<code>Term_Code = 202170</code>)</li>
+</ul>
+<p>The current analysis includes <code>3,140</code> students.</p>
+<h2>Model Context</h2>
+<ul>
+<li>Outcome: <code>degree_obtained</code></li>
+<li>Model type: logistic regression</li>
+<li>Overall model performance: <code>0.719</code> ROC AUC</li>
+<li>Interpretation note: these results show associations, not causal effects</li>
+</ul>
+<h2>Key Findings</h2>
+<ul>
+<li><p>Full-time students had much higher odds of degree attainment than part-time students.
+Odds ratio: <code>3.26</code>
+95% CI: <code>(2.68, 3.96)</code></p>
+</li>
+<li><p>Students identified as Asian had higher odds of degree attainment than students identified as Hispanic, after controlling for the other variables in the model.
+Odds ratio: <code>1.81</code>
+95% CI: <code>(1.45, 2.25)</code></p>
+</li>
+<li><p>Students identified as White also had higher odds of degree attainment than students identified as Hispanic.
+Odds ratio: <code>1.40</code>
+95% CI: <code>(1.13, 1.72)</code></p>
+</li>
+<li><p>Male students had lower odds of degree attainment than female students.
+Odds ratio: <code>0.68</code>
+95% CI: <code>(0.58, 0.80)</code></p>
+</li>
+<li><p>Students who were BOG-eligible had higher odds of degree attainment than students who were not BOG-eligible.
+Odds ratio: <code>1.54</code>
+95% CI: <code>(1.27, 1.87)</code></p>
+</li>
+<li><p>Students from feeder high schools had higher odds of degree attainment than students from non-feeder high schools.
+Odds ratio: <code>1.42</code>
+95% CI: <code>(1.13, 1.78)</code></p>
+</li>
+<li><p>Students whose education goal was associate degree only had lower odds of degree attainment than students with transfer-oriented goals.
+Odds ratio: <code>0.61</code>
+95% CI: <code>(0.41, 0.90)</code></p>
+</li>
+</ul>
+<h2>Findings To Treat Carefully</h2>
+<ul>
+<li><p>International students showed higher estimated odds of degree attainment, but the confidence interval was wide, which suggests more uncertainty.
+Odds ratio: <code>4.53</code>
+95% CI: <code>(1.42, 14.41)</code></p>
+</li>
+<li><p>Students with recorded disabilities showed higher estimated odds of degree attainment in this model, but this should be interpreted carefully and in institutional context.
+Odds ratio: <code>1.57</code>
+95% CI: <code>(1.07, 2.30)</code></p>
+</li>
+<li><p>Age showed a slight negative relationship with degree attainment, but it was borderline rather than strongly conclusive in this model.
+Odds ratio per year: <code>0.97</code>
+95% CI: <code>(0.94, 1.00)</code></p>
+</li>
+</ul>
+<h2>Variables That Were Not Strongly Distinguishing In This Version</h2>
+<ul>
+<li>district status</li>
+<li>athlete status</li>
+<li>certificate or vocational goal compared with transfer-oriented goal</li>
+<li>grouped “other” ethnicity category</li>
+<li>grouped “other/unknown” gender category</li>
+</ul>
+<h2>Practical Interpretation</h2>
+<ul>
+<li>Enrollment intensity appears to matter a great deal in this cohort. Full-time students had the strongest positive association with degree attainment.</li>
+<li>Goal alignment also matters. Students with transfer-oriented goals performed better than students whose goal was associate degree only.</li>
+<li>Some student background variables remain associated with the outcome even after controlling for other factors, which may help identify where support strategies should be explored further.</li>
+</ul>
+<h2>Important Limits</h2>
+<ul>
+<li>This analysis currently uses one cohort only.</li>
+<li>The model is based on available administrative variables, not every possible factor affecting student outcomes.</li>
+<li>Some categories were grouped to improve stability and interpretability.</li>
+<li>Results should be used for planning and inquiry, not for high-stakes individual decisions.</li>
+</ul>
+<h2>Recommended Next Uses</h2>
+<ul>
+<li>Use this summary as the basis for an initial stakeholder discussion.</li>
+<li>Review whether the grouped categories match institutional language and reporting standards.</li>
+<li>Expand the dataset to additional fall cohorts if cross-cohort comparison is still a project goal.</li>
+<li>Consider translating the strongest findings into intervention questions, especially around full-time/part-time differences and declared education goals.</li>
+</ul>
+
+  </main>
+</body>
+</html>

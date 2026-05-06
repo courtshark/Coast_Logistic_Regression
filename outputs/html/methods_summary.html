@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>methods_summary</title>
+  <style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f8fafc;
+  margin: 0;
+  padding: 32px;
+}
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px 48px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+h1, h2, h3 {
+  color: #0f172a;
+}
+code {
+  background: #eef2ff;
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: #e2e8f0;
+}
+blockquote {
+  border-left: 4px solid #93c5fd;
+  margin-left: 0;
+  padding-left: 16px;
+  color: #334155;
+}
+a {
+  color: #2563eb;
+}
+</style>
+</head>
+<body>
+  <main>
+    <h1>Current Methods Summary</h1>
+<h2>Study Objective</h2>
+<p>Estimate which student characteristics are associated with <code>degree_obtained</code> for the current fall-entry cohort.</p>
+<h2>Outcome</h2>
+<ul>
+<li><code>degree_obtained</code></li>
+<li>Binary coding: <code>1 = obtained degree</code>, <code>0 = did not obtain degree</code></li>
+</ul>
+<h2>Current Study Population</h2>
+<p>The primary analysis cohort includes students who meet both conditions:</p>
+<ol>
+<li><code>attendance_status</code> is <code>FT</code> or <code>PT</code></li>
+<li><code>education_goal</code> is degree, certificate, or transfer-oriented</li>
+</ol>
+<p>Excluded from the primary cohort:</p>
+<ul>
+<li><code>WD</code> students because <code>WD</code> represents non-credit students</li>
+<li>students whose education goal is outside the degree/certificate/transfer pathway</li>
+</ul>
+<h2>Current Cohort Size</h2>
+<ul>
+<li>Raw cohort rows: <code>3,613</code></li>
+<li>Primary analysis cohort rows: <code>3,140</code></li>
+</ul>
+<h2>Current Interpretable Model</h2>
+<p>Model type:</p>
+<ul>
+<li>logistic regression via <code>statsmodels</code> GLM with binomial family</li>
+</ul>
+<p>Predictors currently included:</p>
+<ul>
+<li><code>age</code></li>
+<li><code>attendance_status</code></li>
+<li><code>gender_grouped</code></li>
+<li><code>ethnicity_grouped</code></li>
+<li><code>residency_grouped</code></li>
+<li><code>athlete</code></li>
+<li><code>disability</code></li>
+<li><code>international_student</code></li>
+<li><code>district_status</code></li>
+<li><code>high_school_feeder</code></li>
+<li><code>bog_eligible</code></li>
+<li><code>education_goal_grouped</code></li>
+</ul>
+<h2>Grouping Decisions</h2>
+<ul>
+<li><code>gender_grouped</code>: <code>F</code>, <code>M</code>, <code>Other/Unknown</code></li>
+<li><code>ethnicity_grouped</code>: <code>Hispanic</code>, <code>Asian</code>, <code>White</code>, <code>Black</code>, <code>Other/Multiple/Unknown</code></li>
+<li><code>residency_grouped</code>: <code>California Resident</code>, <code>Nonresident/Foreign</code>, <code>AB540/Exempt/Other</code></li>
+<li><code>education_goal_grouped</code>: <code>Transfer-Oriented</code>, <code>Associate Degree</code>, <code>Certificate/Vocational</code></li>
+</ul>
+<h2>Variables Excluded From the Current Interpretable Model</h2>
+<ul>
+<li><code>student_id</code></li>
+<li><code>degree</code></li>
+<li><code>term_code</code></li>
+<li><code>term_semester</code></li>
+<li><code>student_type</code></li>
+<li><code>program_code</code></li>
+<li><code>program_description</code></li>
+<li><code>zipcode</code></li>
+<li><code>ethnicity_detail</code></li>
+<li><code>age_category</code></li>
+<li><code>foster_youth</code></li>
+<li><code>veteran</code></li>
+</ul>
+<h2>Current Model Performance</h2>
+<ul>
+<li>Accuracy on full cohort: <code>0.689</code></li>
+<li>ROC AUC on full cohort: <code>0.719</code></li>
+<li>McFadden pseudo R-squared: <code>0.107</code></li>
+</ul>
+<h2>Current High-Level Interpretation</h2>
+<p>In the current model, stronger positive associations with degree attainment include:</p>
+<ul>
+<li>full-time enrollment relative to part-time</li>
+<li>Asian ethnicity relative to Hispanic ethnicity</li>
+<li>BOG eligibility relative to non-eligibility</li>
+<li>feeder high school status relative to non-feeder high school status</li>
+</ul>
+<p>Negative associations in the current model include:</p>
+<ul>
+<li>male students relative to female students</li>
+<li>associate-degree-only goal relative to transfer-oriented goal</li>
+</ul>
+<p>These are model-based associations and should not be interpreted as causal effects.</p>
+
+  </main>
+</body>
+</html>
