@@ -2,12 +2,12 @@
 
 ## Study Objective
 
-Estimate which student characteristics are associated with `degree_obtained` for the current fall-entry cohort.
+Estimate which student characteristics are associated with completing a degree within 3 academic years for the Fall 2021 entry cohort.
 
 ## Outcome
 
 - `degree_obtained`
-- Binary coding: `1 = obtained degree`, `0 = did not obtain degree`
+- Binary coding: `1 = completed degree within the Fall 2021 to Spring 2024 window`, `0 = did not complete within that window`
 
 ## Current Study Population
 
@@ -25,6 +25,12 @@ Excluded from the primary cohort:
 
 - Raw cohort rows: `3,613`
 - Primary analysis cohort rows: `3,140`
+
+## Outcome Window
+
+- Entry cohort: `Fall 2021`
+- Completion deadline: `end of Spring 2024`
+- Outcome framing: `completed within 3 academic years`
 
 ## Current Interpretable Model
 
@@ -77,7 +83,7 @@ Predictors currently included:
 
 ## Current High-Level Interpretation
 
-In the current model, stronger positive associations with degree attainment include:
+In the current model, stronger positive associations with 3-year completion include:
 
 - full-time enrollment relative to part-time
 - Asian ethnicity relative to Hispanic ethnicity

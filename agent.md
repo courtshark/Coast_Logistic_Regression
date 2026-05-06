@@ -59,6 +59,7 @@ Build a clear, reusable framework for analyzing a binary student academic outcom
 - The current raw file contains 3,613 student rows and 25 columns.
 - `Degree_obtained` is available as a binary candidate outcome in the current file.
 - `Degree_obtained` is now confirmed as the primary study outcome.
+- In this project, `Degree_obtained = 1` means the student completed within the Fall 2021 to Spring 2024 three-academic-year window.
 - `WD` in `attendance_status` means non-credit students.
 - The first baseline model was run using `degree_obtained` as the outcome.
 - The baseline model achieved roughly 0.700 ROC AUC on the holdout split.

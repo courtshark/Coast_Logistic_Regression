@@ -3,9 +3,10 @@
 ## Current Study Definition
 
 - Primary outcome: `degree_obtained`
-- Outcome meaning: binary indicator for whether the student obtained a degree
+- Outcome meaning: binary indicator for whether the student completed a degree within 3 academic years
 - Current cohort file: `data/raw/cohort.xlsx`
 - Current cohort coverage: one fall cohort only (`Term_Code = 202170`)
+- Current study interpretation: Fall 2021 entry cohort tracked through the end of Spring 2024
 - Unit of analysis: one row per student
 - Primary analysis population: credit students (`FT` or `PT`) whose education goal is degree, certificate, or transfer-oriented
 
@@ -55,11 +56,11 @@ Exclude:
 | `AGE` | `age` | predictor | numeric | Continuous age at entry |
 | `FT_PT` | `attendance_status` | predictor | categorical | Includes `FT`, `PT`, and `WD`; `WD` represents non-credit students |
 | `ZIPCODE` | `zipcode` | predictor candidate | categorical | High-cardinality; consider grouping, geography mapping, or exclusion |
-| `Degree_obtained` | `degree_obtained` | outcome | binary | Primary study outcome |
+| `Degree_obtained` | `degree_obtained` | outcome | binary | Primary study outcome: completed within the 3-academic-year window |
 
 ## Current Coding Notes
 
-- `degree_obtained`: `0 = no`, `1 = yes`
+- `degree_obtained`: `0 = did not complete within 3 academic years`, `1 = completed within 3 academic years`
 - `athlete`: `0 = no`, `1 = yes`
 - `disability`: converted to `0/1`
 - `foster_youth`: converted to `0/1`
@@ -75,7 +76,7 @@ Exclude:
 - `zipcode`, `program_code`, `program_description`, and `ethnicity_detail` may create sparse categories and unstable coefficients.
 - `student_type`, `term_code`, and `term_semester` are constant in the current file, so they do not help in the current single-cohort model.
 - `foster_youth` and `veteran` are low-frequency predictors and may need grouped handling or careful interpretation.
-- Because `WD` represents non-credit students rather than a standard enrollment intensity, those rows are excluded from the primary degree attainment model.
+- Because `WD` represents non-credit students rather than a standard enrollment intensity, those rows are excluded from the primary 3-year completion model.
 
 ## Recommended Baseline Feature Set
 
